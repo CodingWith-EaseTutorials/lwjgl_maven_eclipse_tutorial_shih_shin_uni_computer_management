@@ -1,4 +1,4 @@
-package main;
+package main.with_model;
 
 import imgui.ImGui;
 import imgui.ImGuiIO;
