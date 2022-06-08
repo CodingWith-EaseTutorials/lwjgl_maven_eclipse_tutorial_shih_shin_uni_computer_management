@@ -44,9 +44,10 @@ public class Main {
 	// Fragment shader
 	private static final String FRAG_SRC = "#version 330 core\n"
 			+ "out vec4 FragColor;\n"
+			+ "uniform vec3 inputColor;\n"
 			+ "void main()\n"
 			+ "{\n"
-			+ "    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+			+ "    FragColor = vec4(inputColor, 1);\n"
 			+ "}";
 
 	private static final float[] VERTICES = {
@@ -162,7 +163,10 @@ public class Main {
 	
 	        ImGui.render();
 	        imGuiGl3.renderDrawData(ImGui.getDrawData());
-
+	        
+	        
+	        glUniform3f(glGetUniformLocation(shaderProgram, "inputColor"), colorsValue[0], colorsValue[1], colorsValue[2]);
+	        
 			// Swap buffers and poll IO events (key/mouse events)
 			glfwSwapBuffers(window);
 			glfwPollEvents();
